@@ -1,0 +1,187 @@
+swagger: "2.0"
+info:
+  description: |
+    This is documentation of coinpaprika API.
+    # General
+    * The base endpoint is: https://api.coinpaprika.com/v1/
+    * All endpoints return either a JSON object or array
+    * All timestamp related fields are in seconds
+    # Errors
+    * API errors are formatted as JSON:
+    ```{"error": "<error message>"}```
+    * HTTP 4XX return codes are used for invalid requests - the issue is on the sender's side
+    * HTTP 429 return code is used when breaking a request rate limit
+    * HTTP 5XX return codes are used for internal errors - the issue is on coinpaprika's side
+    # Rate limit
+    
+
+  version: "1.0.0"
+  title: "Coinpaprika API"
+host: "api.coinpaprika.com"
+basePath: "/v1"
+tags:
+- name: "global"
+- name: "coins"
+- name: "ticker"
+schemes:
+- "https"
+paths:
+  /global:
+    get:
+      tags:
+      - "global"
+      summary: "Get global information"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+                  {
+                    $ref: "#/definitions/Global"
+                  }
+        429:
+          description: "too many requests"
+          
+  /coins:
+    get:
+      tags:
+      - "coins"
+      summary: "Get all coins listed on coinpaprika"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+                  {
+                    $ref: "#/definitions/Coin"
+                  }
+        429:
+          description: "too many requests"
+          
+  /ticker:
+    get:
+      tags:
+      - "ticker"
+      summary: "Get ticker information for all coins"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+                  {
+                    $ref: "#/definitions/Tick"
+                  }
+        429:
+          description: "too many requests"
+  /ticker/{coin_id}:
+    get:
+      tags:
+      - "ticker"
+      summary: "Get ticker information for specific coin"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "coin_id"
+        in: "path"
+        required: true
+        description: "ID of coin to return e.g. btc-bitcoin, eth-ethereum"
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Tick"
+        429:
+          description: "too many requests"
+        404:
+          description: "coin not found"
+definitions:
+  Tick:
+    type: "object"
+    description: "Tick response. Missing values are returned as empty string"
+    properties:
+      id:
+        type: "string"
+        example: "btc-bitcoin"
+      name:
+        type: "string"
+        example: "Bitcoin"
+      symbol:
+        type: "string"
+        example: "BTC"
+      rank:
+        type: "string"
+        example: "1"
+      price_usd:
+        type: "string"
+        example: "9259.01"
+      price_btc:
+        type: "string"
+        example: "1"
+      24h_volume_usd:
+        type: "string"
+        example: "8102619999"
+      market_cap_usd:
+        type: "string"
+        example: "157468557128"
+      circulating_supply:
+        type: "string"
+        example: "17007062"
+      total_supply:
+        type: "string"
+        example: "17007062"
+      max_supply:
+        type: "string"
+        example: "21000000"
+      percent_change_1h:
+        type: "string"
+        example: "-0.26"
+      percent_change_24h:
+        type: "string"
+        example: "0.22"
+      percent_change_7d:
+        type: "string"
+        example: "4.1"
+      last_updated:
+        type: "string"
+        example: "1525088839"
+  Coin:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "btc-bitcoin"
+      name:
+        type: "string"
+        example: "Bitcoin"
+      symbol:
+        type: "string"
+        example: "BTC"
+  Global:
+    type: "object"
+    properties:
+      market_cap_usd:
+        type: "number"
+        example: 430252937008
+      volume_24h_usd:
+        type: "number"
+        example: 430252937008
+      bitcoin_dominance_percentage:
+        type: "number"
+        example: 36.67
+      cryptocurrencies_number:
+        type: "integer"
+        example: 1587  
+      last_updated:
+        type: "integer"
+        example: 1525089441
+

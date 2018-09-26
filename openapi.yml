@@ -4,7 +4,12 @@ info:
     url: "https://coinpaprika.com/static/files/d6d3c6e3.svg#greywizard/rock-coin-web/assets/coin/img/cp-logo-beta.svg"
     backgroundColor: "#FFFFFF"
   description: |
-    This is documentation of coinpaprika API.
+    Coinpaprika API delivers free & frequently updated market data from the world of crypto: coin prices, volumes, market caps, ATHs, return rates and more.
+    # Clients
+    * [PHP](https://github.com/coinpaprika/coinpaprika-api-php-client)
+    * [NodeJS](https://github.com/coinpaprika/coinpaprika-api-nodejs-client)
+    * [GO](https://github.com/coinpaprika/coinpaprika-api-go-client)
+    * [Swift](https://github.com/coinpaprika/coinpaprika-api-swift-client)
     # General
     * The base endpoint is: https://api.coinpaprika.com/v1/
     * All endpoints return either a JSON object or array
@@ -17,7 +22,7 @@ info:
     * HTTP 5XX return codes are used for internal errors - the issue is on coinpaprika's side
     # Rate limit
     * Single IP address can send less than 10 requests per second
-    
+
   version: "1.0.0"
   title: "Coinpaprika API"
 host: "api.coinpaprika.com"
@@ -47,7 +52,7 @@ paths:
                   }
         429:
           description: "too many requests"
-          
+
   /coins:
     get:
       tags:
@@ -66,7 +71,7 @@ paths:
                   }
         429:
           description: "too many requests"
-          
+
   /ticker:
     get:
       tags:
@@ -183,8 +188,7 @@ definitions:
         example: 36.67
       cryptocurrencies_number:
         type: "integer"
-        example: 1587  
+        example: 1587
       last_updated:
         type: "integer"
         example: 1525089441
-

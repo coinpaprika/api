@@ -22,8 +22,8 @@ info:
     * HTTP 5XX return codes are used for internal errors - the issue is on coinpaprika's side
     # Rate limit
     * Single IP address can send less than 10 requests per second
-
-  version: "1.0.0"
+    
+  version: "1.1.0"
   title: "Coinpaprika API"
 host: "api.coinpaprika.com"
 basePath: "/v1"
@@ -31,6 +31,7 @@ tags:
 - name: "global"
 - name: "coins"
 - name: "ticker"
+- name: "search"
 schemes:
 - "https"
 paths:
@@ -52,7 +53,7 @@ paths:
                   }
         429:
           description: "too many requests"
-
+          
   /coins:
     get:
       tags:
@@ -71,7 +72,7 @@ paths:
                   }
         429:
           description: "too many requests"
-
+          
   /ticker:
     get:
       tags:
@@ -112,6 +113,41 @@ paths:
           description: "too many requests"
         404:
           description: "coin not found"
+  /search/:
+    get:
+      tags:
+      - "search"
+      summary: "Search for currencies/icos/people/exchanges/tags"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "q"
+        in: "query"
+        required: true
+        description: "phrase for serach eg. `btc`"
+        type: "string"
+      - name: "c"
+        in: "query"
+        required: false
+        description: "one or more categories (comma separated) to search. Available options: `currencies|exchanges|icos|people|tags`"
+        default: "currencies,exchanges,icos,people,tags"
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: false
+        description: "limit of results per category (max 250)"
+        default: 6        
+        type: "int"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SearchResults"
+        429:
+          description: "too many requests"
+        400:
+          description: "invalid parameters"
+
 definitions:
   Tick:
     type: "object"
@@ -188,7 +224,100 @@ definitions:
         example: 36.67
       cryptocurrencies_number:
         type: "integer"
-        example: 1587
+        example: 1587  
       last_updated:
         type: "integer"
         example: 1525089441
+  SearchResults:
+    type: "object"
+    properties:
+      currencies:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id: 
+              type: "string"
+              example: "btc-bitcoin"              
+            name:
+              type: "string"
+              example: "Bitcoin"
+            symbol:
+              type: "string"
+              example: "BTC"
+            rank:
+              type: "int"
+              example: 1
+            is_new:
+              type: "bool"
+              example: false
+              description: "If currency was added within last 5 days"
+            is_active:
+              type: "bool"
+              example: true
+      icos:
+        type: "array"
+        items:          
+          type: "object"
+          properties:
+            id: 
+              type: "string"
+              example: "fil-filecoin-futures"              
+            name:
+              type: "string"
+              example: "Filecoin"
+            symbol:
+              type: "string"
+              example: "FIL"            
+            is_new:
+              type: "bool"
+              example: false
+              description: "If ico was added within last 5 days"
+      exchanges:
+        type: "array"
+        items:          
+          type: "object"
+          properties:
+            id: 
+              type: "string"
+              example: "binance"              
+            name:
+              type: "string"
+              example: "Binance"
+            rank:
+              type: "int"
+              example: 1
+      people:
+        type: "array"
+        items:          
+          type: "object"
+          properties:
+            id: 
+              type: "string"
+              example: "vitalik-buterin"              
+            name:
+              type: "string"
+              example: "Vitalik Buterin"
+            teams_count:
+              type: "int"
+              example: 5
+              description: "Number of teams where person is a member"
+      tags:
+        type: "array"
+        items:          
+          type: "object"
+          properties:
+            id: 
+              type: "string"
+              example: "blockchain-service"              
+            name:
+              type: "string"
+              example: "Blockchain Service"
+            counter:
+              type: "int"
+              example: 160
+              description: "Number of currencies with this tag"
+            ico_counter:
+              type: "int"
+              example: 80
+              description: "Number of icos with this tag"

@@ -113,7 +113,7 @@ paths:
           description: "too many requests"
         404:
           description: "coin not found"
-  /search/?{parameters}:
+  /search/:
     get:
       tags:
       - "search"

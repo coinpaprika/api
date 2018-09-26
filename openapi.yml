@@ -4,7 +4,7 @@ info:
     url: "https://coinpaprika.com/static/files/d6d3c6e3.svg#greywizard/rock-coin-web/assets/coin/img/cp-logo-beta.svg"
     backgroundColor: "#FFFFFF"
   description: |
-    Coinpaprika API delivers free & frequently updated market data from the world of crypto: coin prices, volumes, market caps, ATHs, return rates and more..
+    Coinpaprika API delivers free & frequently updated market data from the world of crypto: coin prices, volumes, market caps, ATHs, return rates and more.
     # Clients
     * [PHP](https://github.com/coinpaprika/coinpaprika-api-php-client)
     * [NodeJS](https://github.com/coinpaprika/coinpaprika-api-nodejs-client)

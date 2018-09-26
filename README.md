@@ -11,8 +11,7 @@ We are using [OpenAPI Specification](openapi.yml) specification to describe our 
 
 ## Clients
 
-* [PHP]
-(https://github.com/coinpaprika/coinpaprika-api-php-client)
+* [PHP](https://github.com/coinpaprika/coinpaprika-api-php-client)
 
 * [NodeJS](https://github.com/coinpaprika/coinpaprika-api-nodejs-client)
 

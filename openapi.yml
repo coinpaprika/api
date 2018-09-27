@@ -137,7 +137,7 @@ paths:
         required: false
         description: "limit of results per category (max 250)"
         default: 6        
-        type: "int"
+        type: "integer"
       responses:
         200:
           description: "successful operation"
@@ -246,14 +246,14 @@ definitions:
               type: "string"
               example: "BTC"
             rank:
-              type: "int"
+              type: "integer"
               example: 1
             is_new:
-              type: "bool"
+              type: "boolean"
               example: false
               description: "If currency was added within last 5 days"
             is_active:
-              type: "bool"
+              type: "boolean"
               example: true
       icos:
         type: "array"
@@ -270,7 +270,7 @@ definitions:
               type: "string"
               example: "FIL"            
             is_new:
-              type: "bool"
+              type: "boolean"
               example: false
               description: "If ico was added within last 5 days"
       exchanges:
@@ -285,7 +285,7 @@ definitions:
               type: "string"
               example: "Binance"
             rank:
-              type: "int"
+              type: "integer"
               example: 1
       people:
         type: "array"
@@ -299,7 +299,7 @@ definitions:
               type: "string"
               example: "Vitalik Buterin"
             teams_count:
-              type: "int"
+              type: "integer"
               example: 5
               description: "Number of teams where person is a member"
       tags:
@@ -314,10 +314,10 @@ definitions:
               type: "string"
               example: "Blockchain Service"
             coin_counter:
-              type: "int"
+              type: "integer"
               example: 160
               description: "Number of currencies with this tag"
             ico_counter:
-              type: "int"
+              type: "integer"
               example: 80
               description: "Number of icos with this tag"

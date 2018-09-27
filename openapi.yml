@@ -22,8 +22,8 @@ info:
     * HTTP 5XX return codes are used for internal errors - the issue is on coinpaprika's side
     # Rate limit
     * Single IP address can send less than 10 requests per second
-    
-  version: "1.1.1"
+
+  version: "1.2.1"
   title: "Coinpaprika API"
 host: "api.coinpaprika.com"
 basePath: "/v1"
@@ -48,12 +48,12 @@ paths:
           schema:
             type: "array"
             items:
-                  {
-                    $ref: "#/definitions/Global"
-                  }
+              {
+                $ref: "#/definitions/Global"
+              }
         429:
           description: "too many requests"
-          
+
   /coins:
     get:
       tags:
@@ -67,12 +67,12 @@ paths:
           schema:
             type: "array"
             items:
-                  {
-                    $ref: "#/definitions/Coin"
-                  }
+              {
+                $ref: "#/definitions/Coin"
+              }
         429:
           description: "too many requests"
-          
+
   /ticker:
     get:
       tags:
@@ -86,9 +86,9 @@ paths:
           schema:
             type: "array"
             items:
-                  {
-                    $ref: "#/definitions/Tick"
-                  }
+              {
+                $ref: "#/definitions/Tick"
+              }
         429:
           description: "too many requests"
   /ticker/{coin_id}:
@@ -136,7 +136,7 @@ paths:
         in: "query"
         required: false
         description: "limit of results per category (max 250)"
-        default: 6        
+        default: 6
         type: "integer"
       responses:
         200:
@@ -210,6 +210,16 @@ definitions:
       symbol:
         type: "string"
         example: "BTC"
+      rank:
+        type: "integer"
+        example: 1
+      is_new:
+        type: "boolean"
+        example: false
+        description: "If currency was added within last 5 days"
+      is_active:
+        type: "boolean"
+        example: true
   Global:
     type: "object"
     properties:
@@ -224,7 +234,7 @@ definitions:
         example: 36.67
       cryptocurrencies_number:
         type: "integer"
-        example: 1587  
+        example: 1587
       last_updated:
         type: "integer"
         example: 1525089441
@@ -236,9 +246,9 @@ definitions:
         items:
           type: "object"
           properties:
-            id: 
+            id:
               type: "string"
-              example: "btc-bitcoin"              
+              example: "btc-bitcoin"
             name:
               type: "string"
               example: "Bitcoin"
@@ -257,30 +267,30 @@ definitions:
               example: true
       icos:
         type: "array"
-        items:          
+        items:
           type: "object"
           properties:
-            id: 
+            id:
               type: "string"
-              example: "fil-filecoin-futures"              
+              example: "fil-filecoin-futures"
             name:
               type: "string"
               example: "Filecoin"
             symbol:
               type: "string"
-              example: "FIL"            
+              example: "FIL"
             is_new:
               type: "boolean"
               example: false
               description: "If ico was added within last 5 days"
       exchanges:
         type: "array"
-        items:          
+        items:
           type: "object"
           properties:
-            id: 
+            id:
               type: "string"
-              example: "binance"              
+              example: "binance"
             name:
               type: "string"
               example: "Binance"
@@ -289,12 +299,12 @@ definitions:
               example: 1
       people:
         type: "array"
-        items:          
+        items:
           type: "object"
           properties:
-            id: 
+            id:
               type: "string"
-              example: "vitalik-buterin"              
+              example: "vitalik-buterin"
             name:
               type: "string"
               example: "Vitalik Buterin"
@@ -304,12 +314,12 @@ definitions:
               description: "Number of teams where person is a member"
       tags:
         type: "array"
-        items:          
+        items:
           type: "object"
           properties:
-            id: 
+            id:
               type: "string"
-              example: "blockchain-service"              
+              example: "blockchain-service"
             name:
               type: "string"
               example: "Blockchain Service"

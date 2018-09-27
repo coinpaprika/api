@@ -118,7 +118,7 @@ paths:
       - name: "q"
         in: "query"
         required: true
-        description: "phrase for serach eg. `btc`"
+        description: "phrase for search eg. `btc`"
         type: "string"
       - name: "c"
         in: "query"

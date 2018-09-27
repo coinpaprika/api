@@ -23,7 +23,7 @@ info:
     # Rate limit
     * Single IP address can send less than 10 requests per second
     
-  version: "1.1.0"
+  version: "1.1.1"
   title: "Coinpaprika API"
 host: "api.coinpaprika.com"
 basePath: "/v1"
@@ -313,7 +313,7 @@ definitions:
             name:
               type: "string"
               example: "Blockchain Service"
-            counter:
+            coin_counter:
               type: "int"
               example: 160
               description: "Number of currencies with this tag"

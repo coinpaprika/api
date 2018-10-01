@@ -165,7 +165,7 @@ definitions:
       price_btc:
         type: "string"
         example: "1"
-      24h_volume_usd:
+      volume_24h_usd:
         type: "string"
         example: "8102619999"
       market_cap_usd:

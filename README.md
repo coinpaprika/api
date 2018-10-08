@@ -19,3 +19,7 @@ We are using [OpenAPI Specification](openapi.yml) specification to describe our 
 
 * [Swift](https://github.com/coinpaprika/coinpaprika-api-swift-client)
 
+
+* Community Contributed Clients:
+
+    * [C#](https://github.com/MSiccDev/CoinpaprikaAPI)

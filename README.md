@@ -1,13 +1,11 @@
 # Coinpaprika API
-Coinpaprika API delivers free & frequently updated market data from the world of crypto: coin prices, volumes, market caps, ATHs, return rates and more.
+
+## Open API
+This repository contains old version of Open API specification. Current version can be found [here](https://github.com/coinpaprika).
 
 ## Documentation 
 
 Documentation and example requests could be checked at [api.coinpaprika.com](https://api.coinpaprika.com).
-
-## Open API
-
-We are using [OpenAPI Specification](openapi.yml) specification to describe our API. 
 
 ## Clients
 
@@ -18,6 +16,8 @@ We are using [OpenAPI Specification](openapi.yml) specification to describe our 
 * [GO](https://github.com/coinpaprika/coinpaprika-api-go-client)
 
 * [Swift](https://github.com/coinpaprika/coinpaprika-api-swift-client)
+
+* [Kotlin](https://github.com/coinpaprika/coinpaprika-api-kotlin-client)
 
 
 * Community Contributed Clients:
